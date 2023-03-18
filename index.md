@@ -26,6 +26,13 @@ Here are some projects to help us live or work.
 | ---------------------------------------------- | --------------------------------- |
 | [rollupx](https://github.com/yujinpan/rollupx) | js/ts/vue/scss/less to a library. |
 
+## Vue Component Develop Template
+
+| Name                                                                   | Description                  |
+| ---------------------------------------------------------------------- | ---------------------------- |
+| [vue3-component-pack](https://github.com/yujinpan/vue3-component-pack) | Vue3 component to a library. |
+| [vue-component-pack](https://github.com/yujinpan/vue-component-pack)   | Vue2 component to a library. |
+
 ## Node Utils
 
 | Name                                                               | Description                               |
@@ -40,3 +47,17 @@ Here are some projects to help us live or work.
 | Name                                                               | Description                                                 |
 | ------------------------------------------------------------------ | ----------------------------------------------------------- |
 | [vue-awesome-icons](https://github.com/yujinpan/vue-awesome-icons) | View/Download all svg icons (official website is too slow). |
+
+## Tampermonkey Extensions
+
+[WebSite](https://greasyfork.org/zh-CN/users/226081-yujinpan)
+
+### Functions
+
+- restore text select(such as can not copy code in CSDN)
+- restore right-click(such as can not select code in CSDN)
+- images capture(support background image, useful for UI designer)
+- remove [电影天堂] website ads
+- remove google ads
+- show stock in hq.sinajs.cn
+- black and white website
