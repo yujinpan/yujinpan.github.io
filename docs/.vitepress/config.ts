@@ -31,7 +31,8 @@ export default defineConfig({
   gtag('js', new Date());
 
   gtag('config', 'G-S66MPLRFJZ');
-</script>`
+</script>
+</body>`
     );
   },
 });
