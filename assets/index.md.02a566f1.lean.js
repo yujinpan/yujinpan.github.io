@@ -1,1 +1,0 @@
-import{_ as t,c as e,o as r,N as a}from"./chunks/framework.1e6a71f2.js";const m=JSON.parse('{"title":"Welcome to yujinpan.github.io","description":"","frontmatter":{},"headers":[],"relativePath":"index.md"}'),o={name:"index.md"},n=a("",18),i=[n];function l(h,d,s,u,p,c){return r(),e("div",null,i)}const f=t(o,[["render",l]]);export{m as __pageData,f as default};
