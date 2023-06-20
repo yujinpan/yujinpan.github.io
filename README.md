@@ -50,7 +50,7 @@ Here are some projects to help us live or work.
 
 ## Tampermonkey Extensions
 
-[WebSite](https://greasyfork.org/zh-CN/users/226081-yujinpan)
+https://greasyfork.org/zh-CN/users/226081-yujinpan
 
 ### Functions
 
@@ -61,3 +61,25 @@ Here are some projects to help us live or work.
 - remove google ads
 - show stock in hq.sinajs.cn
 - black and white website
+
+## Applications
+
+### ChatGPT Web
+
+https://yujinpan.github.io/chatgpt-web/
+
+> Visit https://chatgpt-web-6gqv0dfjb11a67ef-1301154847.ap-shanghai.app.tcloudbase.com/ in China.
+
+- use the ChatGPT in Web with OpenAI API https://platform.openai.com/docs/api-reference/completions
+
+### Cashier Desk
+
+https://yujinpan.github.io/cashier-desk
+
+> Visit https://cashier-desk-2gbddh2b133f5407-1301154847.ap-shanghai.app.tcloudbase.com in China.
+
+- fully static localized application (supports PWA)
+- product Management
+- order management
+- simple statistics
+- adapt to ipad
