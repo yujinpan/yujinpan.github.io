@@ -13,12 +13,16 @@ Here are some projects to help us live or work.
 | [v-title](https://github.com/yujinpan/v-title)                                   | Tooltip for vue directive.                                                 | [yujinpan.github.io/v-title](https://yujinpan.github.io/v-title)                                   |
 | [v-window](https://github.com/yujinpan/v-window)                                 | Make the element a "window"(movable/resizable).                            | [yujinpan.github.io/v-window](https://yujinpan.github.io/v-window)                                 |
 | [v-scroll-auto](https://github.com/yujinpan/v-scroll-auto)                       | Scroll auto for list.                                                      | [yujinpan.github.io/v-scroll-auto](https://yujinpan.github.io/v-scroll-auto)                       |
+| [el-popover](https://github.com/yujinpan/el-popover)                             | el-popover is used internally.                                             | [yujinpan.github.io/el-popover](https://yujinpan.github.io/el-popover)                             |
 
 ## JS Library
 
-| Name                                                                   | Description                                       |
-| ---------------------------------------------------------------------- | ------------------------------------------------- |
-| [operation-tree-node](https://github.com/yujinpan/operation-tree-node) | Multiple methods of operating on tree structures. |
+| Name                                                                           | Description                                       |
+| ------------------------------------------------------------------------------ | ------------------------------------------------- |
+| [operation-tree-node](https://github.com/yujinpan/operation-tree-node)         | Multiple methods of operating on tree structures. |
+| [vue-component-pluggable](https://github.com/yujinpan/vue-component-pluggable) | Make Vue component pluggable.                     |
+| [scripts](https://github.com/yujinpan/scripts)                                 | Some scripts.                                     |
+| [format](https://github.com/yujinpan/format)                                   | Format Conversion.                                |
 
 ## Frontend Builder
 
@@ -35,12 +39,14 @@ Here are some projects to help us live or work.
 
 ## Node Utils
 
-| Name                                                               | Description                               |
-| ------------------------------------------------------------------ | ----------------------------------------- |
-| [rollup-plugin-mdm](https://github.com/yujinpan/rollup-plugin-mdm) | Import markdown module for rollup & vite. |
-| [fs-ops](https://github.com/yujinpan/fs-ops)                       | Operators for node files.                 |
-| [path-ops](https://github.com/yujinpan/path-ops)                   | Operators for node path.                  |
-| [ext-migrator](https://github.com/yujinpan/ext-migrator)           | Complete or remove files extension.       |
+| Name                                                                                         | Description                                |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [rollup-plugin-mdm](https://github.com/yujinpan/rollup-plugin-mdm)                           | Import markdown module for rollup & vite.  |
+| [fs-ops](https://github.com/yujinpan/fs-ops)                                                 | Operators for node files.                  |
+| [path-ops](https://github.com/yujinpan/path-ops)                                             | Operators for node path.                   |
+| [ext-migrator](https://github.com/yujinpan/ext-migrator)                                     | Complete or remove files extension.        |
+| [vite-plugin-ga](https://github.com/yujinpan/vite-plugin-ga)                                 | Vite Plugin GA.                            |
+| [vuepress-plugin-component-demo](https://github.com/yujinpan/vuepress-plugin-component-demo) | Vuepress component demo block in markdown. |
 
 ## Icon Utils
 
