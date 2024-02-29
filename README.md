@@ -39,14 +39,17 @@ Here are some projects to help us live or work.
 
 ## Node Utils
 
-| Name                                                                                         | Description                                |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [rollup-plugin-mdm](https://github.com/yujinpan/rollup-plugin-mdm)                           | Import markdown module for rollup & vite.  |
-| [fs-ops](https://github.com/yujinpan/fs-ops)                                                 | Operators for node files.                  |
-| [path-ops](https://github.com/yujinpan/path-ops)                                             | Operators for node path.                   |
-| [ext-migrator](https://github.com/yujinpan/ext-migrator)                                     | Complete or remove files extension.        |
-| [vite-plugin-ga](https://github.com/yujinpan/vite-plugin-ga)                                 | Vite Plugin GA.                            |
-| [vuepress-plugin-component-demo](https://github.com/yujinpan/vuepress-plugin-component-demo) | Vuepress component demo block in markdown. |
+| Name                                                                                           | Description                                 |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [rollup-plugin-mdm](https://github.com/yujinpan/rollup-plugin-mdm)                             | Import markdown module for rollup & vite.   |
+| [fs-ops](https://github.com/yujinpan/fs-ops)                                                   | Operators for node files.                   |
+| [path-ops](https://github.com/yujinpan/path-ops)                                               | Operators for node path.                    |
+| [ext-migrator](https://github.com/yujinpan/ext-migrator)                                       | Complete or remove files extension.         |
+| [vite-plugin-ga](https://github.com/yujinpan/vite-plugin-ga)                                   | Vite Plugin GA.                             |
+| [vuepress-plugin-component-demo](https://github.com/yujinpan/vuepress-plugin-component-demo)   | Vuepress component demo block in markdown.  |
+| [vitepress-plugin-component-demo](https://github.com/yujinpan/vitepress-plugin-component-demo) | Vitepress component demo block in markdown. |
+| [vitepress-v2](https://github.com/yujinpan/vitepress-v2)                                       | Vitepress for vue2.                         |
+| [release-ops](https://github.com/yujinpan/release-ops)                                         | Project release operators.                  |
 
 ## Icon Utils
 
