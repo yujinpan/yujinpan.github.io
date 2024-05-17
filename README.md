@@ -79,6 +79,12 @@ https://github.com/yujinpan/format
 - geo format convert
   - download GeoJSON areas https://yujinpan.github.io/format/#/geo/areas
 
+### Subscribes Transform
+
+https://github.com/yujinpan/scripts
+
+- support JustMySocks to QuantumultX
+
 ### ChatGPT Web
 
 https://yujinpan.github.io/chatgpt-web/
