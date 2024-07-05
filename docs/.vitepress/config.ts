@@ -15,7 +15,7 @@ export default defineConfig({
     ],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2023 yujinpan',
+      copyright: `Copyright © ${new Date().getFullYear()} yujinpan`,
     },
     lastUpdatedText: 'Updated Date',
   },
