@@ -53,6 +53,8 @@ https://yujinpan.github.io/cashier-desk
 
 > Visit https://cashier-desk-2gbddh2b133f5407-1301154847.ap-shanghai.app.tcloudbase.com in China.
 
+> AppStore https://apps.apple.com/us/app/cashierdesk/id6478970861
+
 - fully static localized application (supports PWA)
 - product Management
 - order management
