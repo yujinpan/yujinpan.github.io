@@ -107,3 +107,7 @@ https://greasyfork.org/zh-CN/users/226081-yujinpan
 - remove google ads
 - show stock in hq.sinajs.cn
 - black and white website
+
+## Tool Recommendation
+
+- [Just My Socks](https://justmysocks.net/members/aff.php?aff=31663) Stable proxy network provider
