@@ -53,13 +53,25 @@ https://yujinpan.github.io/cashier-desk
 
 > Visit https://cashier-desk-2gbddh2b133f5407-1301154847.ap-shanghai.app.tcloudbase.com in China.
 
-> AppStore https://apps.apple.com/us/app/cashierdesk/id6478970861
+> App Store  https://apps.apple.com/us/app/cashierdesk/id6478970861
 
 - fully static localized application (supports PWA)
 - product Management
 - order management
 - simple statistics
 - adapt to ipad
+
+### JSON Tree for Safari
+
+Display JSON Object tree.
+
+> App Store https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12
+
+### NoMedia for Safari
+
+Remove all images, medias.
+
+> App Store https://apps.apple.com/us/app/nomedia/id6683300799
 
 ## Frontend Builder
 
