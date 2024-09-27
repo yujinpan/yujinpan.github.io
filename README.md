@@ -2,6 +2,19 @@
 
 Here are some projects to help us live or work.
 
+## Applications
+
+| Name                                                                                          | Description                                                                                        |
+| --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [ChatGPT Web](https://yujinpan.github.io/chatgpt-web)                                         | ChatGPT web use Gemini. Built-in role play.                                                        |
+| [Learn English From Xinrong](https://yujinpan.github.io/learn-english-from-xinrong)           | Helps us review Xinrong video courses.                                                             |
+| [JSON Tree for Safari](https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12) | Display JSON Object tree for Safari.                                                               |
+| [NoMedia for Safari](https://apps.apple.com/us/app/nomedia/id6683300799)                      | Block all images, medias for Safari.                                                               |
+| [Geo Format Convert](https://yujinpan.github.io/format)                                       | -                                                                                                  |
+| [Download GeoJSON areas](https://yujinpan.github.io/format/#/geo/areas)                       | Supported multiple formats.                                                                        |
+| [Subscribes Transform](https://github.com/yujinpan/scripts)                                   | Supported JustMySocks to QuantumultX.                                                              |
+| [Cashier Desk](https://yujinpan.github.io/cashier-desk)                                       | Fully static localized Cashier. [AppStore](https://apps.apple.com/us/app/cashierdesk/id6478970861) |
+
 ## Vue Components
 
 | Name                                                                             | Description                                                                | Website                                                                                            |
@@ -23,55 +36,6 @@ Here are some projects to help us live or work.
 | [operation-tree-node](https://github.com/yujinpan/operation-tree-node)         | Multiple methods of operating on tree structures. |
 | [vue-component-pluggable](https://github.com/yujinpan/vue-component-pluggable) | Make Vue component pluggable.                     |
 | [scripts](https://github.com/yujinpan/scripts)                                 | Some scripts.                                     |
-
-## Applications
-
-### Format
-
-https://github.com/yujinpan/format
-
-- geo format convert
-  - download GeoJSON areas https://yujinpan.github.io/format/#/geo/areas
-
-### Subscribes Transform
-
-https://github.com/yujinpan/scripts
-
-- support JustMySocks to QuantumultX
-
-### ChatGPT Web
-
-https://yujinpan.github.io/chatgpt-web/
-
-> Visit https://chatgpt-web-6gqv0dfjb11a67ef-1301154847.ap-shanghai.app.tcloudbase.com/ in China.
-
-- use the ChatGPT in Web with OpenAI API https://platform.openai.com/docs/api-reference/completions
-
-### Cashier Desk
-
-https://yujinpan.github.io/cashier-desk
-
-> Visit https://cashier-desk-2gbddh2b133f5407-1301154847.ap-shanghai.app.tcloudbase.com in China.
-
-> App Store  https://apps.apple.com/us/app/cashierdesk/id6478970861
-
-- fully static localized application (supports PWA)
-- product Management
-- order management
-- simple statistics
-- adapt to ipad
-
-### JSON Tree for Safari
-
-Display JSON Object tree.
-
-> App Store https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12
-
-### NoMedia for Safari
-
-Remove all images, medias.
-
-> App Store https://apps.apple.com/us/app/nomedia/id6683300799
 
 ## Frontend Builder
 
