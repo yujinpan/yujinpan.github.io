@@ -7,6 +7,10 @@ export default defineConfig({
   description: `yujinpan's github pages.`,
   themeConfig: {
     logo: '/logo.svg',
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Feedback', link: '/Feedback' },
+    ],
     socialLinks: [
       {
         icon: 'github',
