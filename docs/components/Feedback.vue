@@ -1,7 +1,10 @@
 <template>
   <div class="form">
-    <h1>Feedback</h1>
+    <h1>Product Feedback</h1>
     <div v-if="!showSuccess">
+      <p class="tip custom-block" style="padding: 8px 16px;">
+        Please describe the problem in detail, so that I can improve the product better. Thank you.
+      </p>
       <div class="form-item">
         <label for="application">* Application</label>
         <select
@@ -49,7 +52,7 @@
         </div>
 
         <button @click.prevent="!loading && submit()" style="position: relative" :disabled="loading">
-          {{loading ? "Submitting..." : "Submit"}}
+          {{loading ? "Submitting..." : "Submit Feedback"}}
         </button>
       </div>
     </div>
@@ -120,7 +123,7 @@ const submit = async () => {
 }
 
 h1 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .form-item {
