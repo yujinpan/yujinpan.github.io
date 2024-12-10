@@ -52,7 +52,7 @@
         </div>
 
         <button @click.prevent="!loading && submit()" style="position: relative" :disabled="loading">
-          {{loading ? "Submitting..." : "Submit Feedback"}}
+          {{ loading ? 'Submitting...' : 'Submit Feedback' }}
         </button>
       </div>
     </div>
@@ -69,8 +69,15 @@ import { ref } from 'vue';
 import { Octokit } from 'octokit';
 import { TOKEN } from './Token';
 
+const {application} = location.search.slice(1).split('@').map(item => {
+  const [key, val] = item.split('=');
+  return {[key]: val};
+}).reduce((a, b) => ({...a, ...b}), {});
+
+console.log(application)
+
 const model = ref({
-  application: '',
+  application: application || '',
   title: '',
   description: '',
   name: ''
