@@ -7,6 +7,7 @@ Here are some projects to help us live or work.
 | Name                                                                                          | Description                                                                                        |
 | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [ChatGPT Web](https://yujinpan.github.io/chatgpt-web)                                         | ChatGPT web use Gemini. Built-in role play.                                                        |
+| [Hello Hero]                                                                                  | Chat with your heroes.                                                                             |
 | [Learn English From Xinrong](https://yujinpan.github.io/learn-english-from-xinrong)           | Helps us review Xinrong video courses.                                                             |
 | [JSON Tree for Safari](https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12) | Display JSON Object tree for Safari.                                                               |
 | [NoMedia for Safari](https://apps.apple.com/us/app/nomedia/id6683300799)                      | Block all images, medias for Safari.                                                               |
