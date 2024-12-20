@@ -9,6 +9,7 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Contact Us', link: 'mailto:yujinpan21@gmail.com' },
       { text: 'Feedback', link: '/Feedback' },
     ],
     socialLinks: [
