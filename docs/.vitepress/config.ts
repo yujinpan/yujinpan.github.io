@@ -37,7 +37,6 @@ export default defineConfig({
 
   gtag('config', 'G-S66MPLRFJZ');
 </script>
-<script type="module" crossorigin src="https://yujinpan.github.io/chatgpt-web/webkit.js"></script>
 </body>`
     );
   },
