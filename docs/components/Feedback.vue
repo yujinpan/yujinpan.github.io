@@ -1,8 +1,31 @@
 <template>
   <div class="form">
-    <h1>Product Feedback</h1>
+    <h1 style="text-align: center">Product Feedback</h1>
+
+    <blockquote v-if="historyData.length">
+      <h4>Your Feedback History</h4>
+      <table>
+        <thead>
+        <tr>
+          <td>Title</td>
+          <td>State</td>
+          <td>Created Time</td>
+          <td>Updated Time</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item, index) in historyData" :key="index">
+          <td><a :href="item.html_url">{{ item.title }}</a></td>
+          <td>{{ item.state }}</td>
+          <td>{{ dateFormatter(item.created_at) }}</td>
+          <td>{{ dateFormatter(item.updated_at) }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </blockquote>
+
     <div v-if="!showSuccess">
-      <p class="tip custom-block" style="padding: 8px 16px;">
+      <p class="tip custom-block" style="padding: 8px 16px; text-align: center;">
         Please describe the problem in detail, so that I can improve the product better. Thank you.
       </p>
       <div class="form-item">
@@ -42,7 +65,7 @@
         <textarea
             @input="model.description = $event.target.value"
             :value="model.description" name="description"
-            rows="8"
+            rows="6"
             placeholder="The issue description" />
       </div>
       <div class="form-item">
@@ -57,24 +80,61 @@
       </div>
     </div>
 
-    <div v-else class="tip custom-block">
+    <div v-else class="tip custom-block" style="text-align: center">
       <p class="custom-block-title">Thanks for your feedback. Progress on the issue will be shown here:</p>
-      <p><a :href="issueLink" target="_blank">{{ issueLink }}</a></p>
+      <p><a :href="issueLink" target="_blank">{{ issueTitle }}</a></p>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Octokit } from 'octokit';
 import { TOKEN } from './Token';
+
+const octokit = new Octokit({
+  auth: TOKEN
+});
+
+const historyData = ref([]);
+
+try {
+  historyData.value = JSON.parse(localStorage.getItem('FeedbackHistory') || '[]')
+} catch (e) {}
+
+// historyData.value = [
+//   {
+//     title: '[JSONTree] crashes when i use plug in on this page',
+//     number: 2,
+//     html_url: 'test',
+//     state: 'open',
+//     created_at: 'test',
+//     updated_at: 'test'
+//   }
+// ]
+
+const updateState = () => {
+  historyData.value.forEach(item => {
+    octokit.rest.issues.get({
+      owner: 'PrimaAestate',
+      repo: 'feedback',
+      issue_number: item.number
+    }).then(res => {
+      Object.assign(item, res.data);
+    });
+  });
+}
+
+onMounted(() => {
+  if (historyData.value.length) {
+    setInterval(updateState, 10 * 1000);
+  }
+});
 
 const {application} = location.search.slice(1).split('@').map(item => {
   const [key, val] = item.split('=');
   return {[key]: val};
 }).reduce((a, b) => ({...a, ...b}), {});
-
-console.log(application)
 
 const model = ref({
   application: application || '',
@@ -87,7 +147,8 @@ const showError = ref(false);
 const error = ref('');
 
 const showSuccess = ref(false);
-const issueLink = ref('http://localhost:5173/Feedback?title=&description=');
+const issueLink = ref('');
+const issueTitle = ref('');
 
 const loading = ref(false);
 
@@ -102,10 +163,6 @@ const submit = async () => {
     return;
   }
 
-  const octokit = new Octokit({
-    auth: TOKEN
-  });
-
   loading.value = true;
   return octokit.rest.issues.create({
     owner: 'PrimaAestate',
@@ -115,6 +172,10 @@ const submit = async () => {
   }).then((res) => {
     showSuccess.value = true;
     issueLink.value = res.data.html_url;
+    issueTitle.value = res.data.title;
+
+    historyData.value.push(res.data);
+    localStorage.setItem('FeedbackHistory', JSON.stringify(historyData.value));
   }, err => {
     showError.value = true;
     error.value = String(err);
@@ -122,13 +183,13 @@ const submit = async () => {
     loading.value = false;
   });
 };
+
+function dateFormatter(data) {
+  return new Date(data).toLocaleString()
+}
 </script>
 
 <style scoped>
-.form {
-  text-align: center;
-}
-
 h1 {
   margin-bottom: 20px;
 }
