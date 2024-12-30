@@ -98,21 +98,6 @@ const octokit = new Octokit({
 
 const historyData = ref([]);
 
-try {
-  historyData.value = JSON.parse(localStorage.getItem('FeedbackHistory') || '[]')
-} catch (e) {}
-
-// historyData.value = [
-//   {
-//     title: '[JSONTree] crashes when i use plug in on this page',
-//     number: 2,
-//     html_url: 'test',
-//     state: 'open',
-//     created_at: 'test',
-//     updated_at: 'test'
-//   }
-// ]
-
 const updateState = () => {
   historyData.value.forEach(item => {
     octokit.rest.issues.get({
@@ -125,22 +110,41 @@ const updateState = () => {
   });
 }
 
-onMounted(() => {
-  if (historyData.value.length) {
-    setInterval(updateState, 10 * 1000);
-  }
-});
-
-const {application} = location.search.slice(1).split('@').map(item => {
-  const [key, val] = item.split('=');
-  return {[key]: val};
-}).reduce((a, b) => ({...a, ...b}), {});
-
 const model = ref({
-  application: application || '',
+  application: '',
   title: '',
   description: '',
   name: ''
+});
+
+onMounted(() => {
+  try {
+    historyData.value = JSON.parse(localStorage.getItem('FeedbackHistory') || '[]')
+  } catch (e) {}
+
+  // historyData.value = [
+  //   {
+  //     title: '[JSONTree] crashes when i use plug in on this page',
+  //     number: 2,
+  //     html_url: 'test',
+  //     state: 'open',
+  //     created_at: 'test',
+  //     updated_at: 'test'
+  //   }
+  // ]
+
+  if (historyData.value.length) {
+    setInterval(updateState, 10 * 1000);
+  }
+
+  const {application} = location.search.slice(1).split('@').map(item => {
+    const [key, val] = item.split('=');
+    return {[key]: val};
+  }).reduce((a, b) => ({...a, ...b}), {});
+
+  if (application) {
+    model.value.application = application
+  }
 });
 
 const showError = ref(false);
