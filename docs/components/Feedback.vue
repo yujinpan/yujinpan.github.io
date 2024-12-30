@@ -58,7 +58,7 @@
     </div>
 
     <div v-else class="tip custom-block">
-      <p class="custom-block-title">Thank you for your feedback. Progress on the issue will be shown here:</p>
+      <p class="custom-block-title">Thanks for your feedback. Progress on the issue will be shown here:</p>
       <p><a :href="issueLink" target="_blank">{{ issueLink }}</a></p>
     </div>
   </div>
