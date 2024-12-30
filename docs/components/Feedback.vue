@@ -111,7 +111,7 @@ const submit = async () => {
     owner: 'PrimaAestate',
     repo: 'feedback',
     title: `[${application}] ${title}`,
-    body: `${description}\n\n > Created by ${name || 'anonymous'} on the feedback page.`
+    body: `${description}\n\n > Created by ${name || 'anonymous'} on the feedback page.\n\n @yujinpan`
   }).then((res) => {
     showSuccess.value = true;
     issueLink.value = res.data.html_url;
