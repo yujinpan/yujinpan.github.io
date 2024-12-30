@@ -108,8 +108,8 @@ const submit = async () => {
 
   loading.value = true;
   return octokit.rest.issues.create({
-    owner: 'yujinpan',
-    repo: 'yujinpan.github.io',
+    owner: 'PrimaAestate',
+    repo: 'feedback',
     title: `[${application}] ${title}`,
     body: `${description}\n\n > Created by ${name || 'anonymous'} on the feedback page.`
   }).then((res) => {
