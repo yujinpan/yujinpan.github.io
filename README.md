@@ -5,16 +5,17 @@ Here are some projects to help us live or work.
 ## Applications
 
 | Name                                                                                          | Description                                                                                        |
-|-----------------------------------------------------------------------------------------------| -------------------------------------------------------------------------------------------------- |
-| [ChatGPT Web](https://yujinpan.github.io/chatgpt-web)                                         | ChatGPT web use Gemini. Built-in role play.                                                        |
+| --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [Hello Hero](https://apps.apple.com/us/app/hello-heros/id6739343026)                          | Chat with your heroes.                                                                             |
-| [Learn English From Xinrong](https://yujinpan.github.io/learn-english-from-xinrong)           | Helps us review Xinrong video courses.                                                             |
+| [URL Editor for Safari](https://apps.apple.com/us/app/url-editor-portable/id6740315748)       | Easily view and edit various contents of the URL.                                                  |
 | [JSON Tree for Safari](https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12) | Display JSON Object tree for Safari.                                                               |
 | [NoMedia for Safari](https://apps.apple.com/us/app/nomedia/id6683300799)                      | Block all images, medias for Safari.                                                               |
+| [Learn English From Xinrong](https://yujinpan.github.io/learn-english-from-xinrong)           | Helps us review Xinrong video courses.                                                             |
 | [Geo Format Convert](https://yujinpan.github.io/format)                                       | -                                                                                                  |
 | [Download GeoJSON areas](https://yujinpan.github.io/format/#/geo/areas)                       | Supported multiple formats.                                                                        |
 | [Subscribes Transform](https://github.com/yujinpan/scripts)                                   | Supported JustMySocks to QuantumultX.                                                              |
 | [Cashier Desk](https://yujinpan.github.io/cashier-desk)                                       | Fully static localized Cashier. [AppStore](https://apps.apple.com/us/app/cashierdesk/id6478970861) |
+| [ChatGPT Web](https://yujinpan.github.io/chatgpt-web)                                         | ChatGPT web use Gemini. Built-in role play.                                                        |
 
 ## Vue Components
 

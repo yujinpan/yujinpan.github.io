@@ -36,10 +36,11 @@
             :class="{'is-placeholder': !model.application}"
             name="application">
           <option value="" disabled>Place choose an application</option>
+          <option value="HelloHero">HelloHero</option>
+          <option value="URLEditor">URLEditor</option>
           <option value="JSONTree">JSONTree</option>
           <option value="NoMedia">NoMedia</option>
           <option value="CashierDesk">CashierDesk</option>
-          <option value="HelloHero">HelloHero</option>
           <option value="ChatGPTWeb">ChatGPTWeb</option>
           <option value="Other">Other</option>
         </select>
