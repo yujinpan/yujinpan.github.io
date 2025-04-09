@@ -11,6 +11,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Contact Us', link: 'mailto:yujinpan21@gmail.com' },
       { text: 'Feedback', link: '/Feedback' },
+      { text: 'Privacy Policy', link: '/PrivacyPolicy' },
     ],
     socialLinks: [
       {
