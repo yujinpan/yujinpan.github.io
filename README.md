@@ -7,6 +7,7 @@ Here are some projects to help us live or work.
 | Name                                                                                          | Description                                                                                        |
 | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [Hello Hero](https://apps.apple.com/us/app/hello-heros/id6739343026)                          | Chat with your heroes.                                                                             |
+| [Console Mini](https://apps.apple.com/cn/app/console-mini/id6744146152?l=en-GB)               | A mini console for web development tools in Safari.                                                |
 | [URL Editor for Safari](https://apps.apple.com/us/app/url-editor-portable/id6740315748)       | Easily view and edit various contents of the URL.                                                  |
 | [JSON Tree for Safari](https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12) | Display JSON Object tree for Safari.                                                               |
 | [NoMedia for Safari](https://apps.apple.com/us/app/nomedia/id6683300799)                      | Block all images, medias for Safari.                                                               |

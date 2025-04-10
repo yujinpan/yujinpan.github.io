@@ -37,6 +37,7 @@
             name="application">
           <option value="" disabled>Place choose an application</option>
           <option value="HelloHero">HelloHero</option>
+          <option value="ConsoleMini">ConsoleMini</option>
           <option value="URLEditor">URLEditor</option>
           <option value="JSONTree">JSONTree</option>
           <option value="NoMedia">NoMedia</option>
