@@ -26,7 +26,7 @@
 
     <div v-if="!showSuccess">
       <p class="tip custom-block" style="padding: 8px 16px; text-align: center;">
-        Please describe the problem in detail, so that I can improve the product better. Thank you.
+        Please describe the issue in detail, so that I can improve the product better. Thank you.
       </p>
       <div class="form-item">
         <label for="application">* Application</label>
@@ -47,23 +47,7 @@
         </select>
       </div>
       <div class="form-item">
-        <label for="name">name</label>
-        <input
-            @input="model.name = $event.target.value"
-            :value="model.name"
-            name="name"
-            placeholder="Your nickname, not required" />
-      </div>
-      <div class="form-item">
-        <label for="title">* Title</label>
-        <input
-            @input="model.title = $event.target.value"
-            :value="model.title"
-            name="title"
-            placeholder="The issue title" />
-      </div>
-      <div class="form-item">
-        <label for="description">* Description</label>
+        <label for="description" style="display: flex">* Description <small style="margin-left: auto" class="text-secondary">Such as error content</small></label>
         <textarea
             @input="model.description = $event.target.value"
             :value="model.description" name="description"
@@ -71,12 +55,36 @@
             placeholder="The issue description" />
       </div>
       <div class="form-item">
+        <label for="attachments" style="display: flex">Attachments <small style="margin-left: auto" class="text-secondary">Files or screenshots of the issue</small></label>
+        <div style="display: flex">
+          <input
+              ref="attachments"
+              @change="model.attachments = Array.from($event.target.files)"
+              type="file"
+              name="attachments"
+              multiple />
+          <button @click="$refs.attachments.value = '';model.attachments = [];" class="clear-btn">Reset</button>
+        </div>
+        <ul>
+          <li v-for="item in model.attachments">{{item.name}}</li>
+        </ul>
+      </div>
+      <div class="form-item">
+        <label for="email" style="display: flex">Email <small class="text-secondary" style="margin-left: auto">To receive the status of the issue</small></label>
+        <input
+            @input="model.email = $event.target.value"
+            :value="model.email"
+            name="email"
+            type="email"
+            placeholder="Your email, not required" />
+      </div>
+      <div class="form-item">
         <div v-if="showError" class="warning custom-block">
           <p class="custom-block-title">WARNING</p>
           <p>{{ error }}</p>
         </div>
 
-        <button @click.prevent="!loading && submit()" style="position: relative" :disabled="loading">
+        <button class="submit" @click.prevent="!loading && submit()" style="position: relative" :disabled="loading">
           {{ loading ? 'Submitting...' : 'Submit Feedback' }}
         </button>
       </div>
@@ -92,7 +100,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import { Octokit } from 'octokit';
-import { TOKEN } from './Token';
+import { TOKEN } from './token';
 
 const octokit = new Octokit({
   auth: TOKEN
@@ -114,9 +122,9 @@ const updateState = () => {
 
 const model = ref({
   application: '',
-  title: '',
   description: '',
-  name: ''
+  attachments: [] as File[],
+  email: '',
 });
 
 onMounted(() => {
@@ -158,23 +166,66 @@ const issueTitle = ref('');
 
 const loading = ref(false);
 
+const blobToDataUrl = (blob: Blob): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.onabort = reject;
+    reader.readAsDataURL(blob);
+  })
+}
+
+const uploadFile = async (application: string, file: File): Promise<string> => {
+  let fileId = Date.now();
+  return octokit.rest.repos.createOrUpdateFileContents({
+    owner: 'PrimaAestate',
+    repo: 'feedback',
+    path: `${application}/attachments/${file.name.replace(/(\.\w+$)/, `_${++fileId}$1`)}`.replace(/\s/g, '_'),
+    message: `[${application}/attachments] ${file.name}`,
+    content: await blobToDataUrl(file).then(res => res.split('base64,')[1]),
+  }).then(res => res.data.content.download_url)
+}
+
 const submit = async () => {
   showError.value = false;
   showSuccess.value = false;
 
-  const {application, title, description, name} = model.value;
-  if (!application || !title || !description) {
-    error.value = 'Application/Title/Description required.';
+  const {application, description, attachments, email} = model.value;
+  if (!application || !description) {
+    error.value = 'Application/Description required.';
     showError.value = true;
     return;
   }
+
+  let files: string[];
+  if (attachments.length) {
+    loading.value = true;
+    files = await Promise.all(attachments.map((item) => {
+      return uploadFile(application, item)
+        .then(url => {
+          return `[${item.name}](${url})`;
+        })
+    })).catch(e => {
+      showError.value = true;
+      error.value = 'Upload attachments error - ' + String(e);
+      return Promise.reject(error.value);
+    }).finally(() => {
+      loading.value = false;
+    })
+  }
+
+  const title = `[${application}] ${description.slice(0, 20)}`;
+  const body = `${description}${
+      files ? `\n\n> Attachments\n${files.join('\n')}` : ''
+  }\n>\n> Created by ${email || 'anonymous'} on the feedback page.\n\n@yujinpan`;
 
   loading.value = true;
   return octokit.rest.issues.create({
     owner: 'PrimaAestate',
     repo: 'feedback',
-    title: `[${application}] ${title}`,
-    body: `${description}\n\n > Created by ${name || 'anonymous'} on the feedback page.\n\n @yujinpan`
+    title,
+    body
   }).then((res) => {
     showSuccess.value = true;
     issueLink.value = res.data.html_url;
@@ -196,6 +247,10 @@ function dateFormatter(data) {
 </script>
 
 <style scoped>
+.form {
+  font-size: 16px;
+}
+
 h1 {
   margin-bottom: 20px;
 }
@@ -213,7 +268,7 @@ label {
 }
 
 input, textarea, select {
-  font-size: 16px;
+  font-size: inherit;
   width: 100%;
   border: 1px solid var(--vp-c-divider);
   padding: 5px 10px;
@@ -231,13 +286,16 @@ input, textarea, select {
   line-height: 1.5em;
 }
 
+button {
+  font-size: inherit;
+}
+
 select.is-placeholder {
   color: var(--vp-c-text-3)
 }
 
-button {
+.submit {
   width: 100%;
-  font-size: 16px;
   background: var(--vp-c-green-3);
   padding: 10px;
   border-radius: 4px;
@@ -257,6 +315,18 @@ button {
     background: var(--vp-c-green-soft);
     color: var(--vp-c-text-3);
   }
+}
+
+.clear-btn {
+  background: var(--vp-c-gray-3);
+  color: var(--vp-c-text-1);
+  padding: 0 20px;
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+.text-secondary {
+  color: var(--vp-c-text-3);
 }
 
 .warning {
