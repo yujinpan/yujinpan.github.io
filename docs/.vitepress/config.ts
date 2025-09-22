@@ -3,8 +3,8 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   appearance: true,
   lang: 'en-US',
-  title: 'yujinpan',
-  description: `yujinpan's github pages.`,
+  title: 'Prima Aestate ITS',
+  description: `Prima Aestate Information Technology Services.`,
   themeConfig: {
     logo: '/logo.svg',
     nav: [
@@ -21,7 +21,7 @@ export default defineConfig({
     ],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © ${new Date().getFullYear()} yujinpan`,
+      copyright: `Copyright © ${new Date().getFullYear()} Prima Aestate ITS`,
     },
     lastUpdatedText: 'Updated Date',
   },
