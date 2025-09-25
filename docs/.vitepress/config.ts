@@ -3,8 +3,8 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   appearance: true,
   lang: 'en-US',
-  title: 'Prima Aestate ITS',
-  description: `Prima Aestate Information Technology Services.`,
+  title: 'Prima Aestate',
+  description: `Prima Aestate Technology.`,
   themeConfig: {
     logo: '/logo.svg',
     nav: [
@@ -21,7 +21,7 @@ export default defineConfig({
     ],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © ${new Date().getFullYear()} Prima Aestate ITS`,
+      copyright: `Copyright © ${new Date().getFullYear()} Prima Aestate`,
     },
     lastUpdatedText: 'Updated Date',
   },
