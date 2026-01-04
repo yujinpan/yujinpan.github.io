@@ -9,6 +9,7 @@ Here are some projects to help us live or work.
 | [Aestate](https://apps.apple.com/us/app/aestate/id6749141594?mt=12)                           | A lightweight proxy tool designed to minimize battery drain.                                       |
 | [Hello Hero](https://apps.apple.com/us/app/hello-heros/id6739343026)                          | Chat with your heroes.                                                                             |
 | [Console Mini](https://apps.apple.com/cn/app/console-mini/id6744146152?l=en-GB)               | A mini console for web development tools in Safari.                                                |
+| [Web Copilot](https://apps.apple.com/us/app/web-copilot/id6755813748)                         | AI Browser Agent.                                                                                  |
 | [URL Editor for Safari](https://apps.apple.com/us/app/url-editor-portable/id6740315748)       | Easily view and edit various contents of the URL.                                                  |
 | [JSON Tree for Safari](https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12) | Display JSON Object tree for Safari.                                                               |
 | [NoMedia for Safari](https://apps.apple.com/us/app/nomedia/id6683300799)                      | Block all images, medias for Safari.                                                               |
@@ -90,4 +91,5 @@ https://greasyfork.org/zh-CN/users/226081-yujinpan
 
 ## Tool Recommendation
 
+- [WgetCloud](https://invite.wgetcloud.ltd/auth/register?code=4j9lDR) Stable proxy network provider
 - [Just My Socks](https://justmysocks.net/members/aff.php?aff=31663) Stable proxy network provider
