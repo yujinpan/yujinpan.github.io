@@ -3,4 +3,5 @@
 .app-card:hover{border-color:var(--vp-c-brand-1)}
 .app-card img{width:64px;height:64px;border-radius:14px;flex:none}
 .app-card strong{display:block;font-size:16px}
-.app-card span{font-size:13px;color:var(--vp-c-text-2);line-height:1.4}
+.app-card strong{margin-bottom:4px}
+.app-card span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;color:var(--vp-c-text-2);line-height:1.6}
