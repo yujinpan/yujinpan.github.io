@@ -1,0 +1,11 @@
+[
+  { "slug": "aestate", "name": "Aestate" },
+  { "slug": "nomedia", "name": "NoMedia" },
+  { "slug": "web-copilot", "name": "Web Copilot" },
+  { "slug": "hello-hero", "name": "Hello, Hero" },
+  { "slug": "console-mini", "name": "Console Mini" },
+  { "slug": "url-editor-portable", "name": "URL Editor Portable" },
+  { "slug": "json-tree", "name": "JSON Tree" },
+  { "slug": "cashier-desk", "name": "Cashier Desk" },
+  { "slug": "other", "name": "Other" }
+]
