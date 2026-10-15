@@ -24,6 +24,12 @@
       </table>
     </section>
 
+    <aside class="email-us">
+      <strong>Prefer email?</strong>
+      <a :href="mailto">Email us at support@primaaestate.cloud</a>
+      <small class="text-secondary">Email is private. Only we see it, unlike the public issues below.</small>
+    </aside>
+
     <form v-if="!success" novalidate @submit.prevent="submit" @reset.prevent="resetForm">
       <p class="tip custom-block notice">
         Please describe the issue in detail so we can improve the product. Thank you!<br />
@@ -52,27 +58,13 @@
       <div class="form-item">
         <label for="fb-desc" class="row">
           <span>Description <span aria-hidden="true">*</span></span>
-          <small id="fb-desc-hint" class="text-secondary">Steps, error messages, app version… ({{ model.description.trim().length }}/{{ LIMITS.descMax }})</small>
+          <small id="fb-desc-hint" class="text-secondary">Steps, error messages, app version; paste a screenshot link if you have one… ({{ model.description.trim().length }}/{{ LIMITS.descMax }})</small>
         </label>
         <textarea id="fb-desc" v-model="model.description" name="description" rows="6" required
                   :maxlength="LIMITS.descMax" placeholder="Describe the issue"
                   :aria-invalid="!!errors.description"
                   :aria-describedby="errors.description ? 'fb-desc-hint fb-desc-err' : 'fb-desc-hint'" />
         <p v-if="errors.description" id="fb-desc-err" class="field-error">{{ errors.description }}</p>
-      </div>
-
-      <div class="form-item">
-        <label for="fb-files" class="row">Attachments
-          <small id="fb-files-hint" class="text-secondary">Up to {{ LIMITS.files }} files, 5 MB each: images, .txt, .log, .zip</small></label>
-        <div style="display: flex">
-          <input id="fb-files" ref="fileInput" type="file" name="files" multiple :accept="ACCEPT"
-                 aria-describedby="fb-files-hint" :aria-invalid="!!errors.files" @change="onFiles" />
-          <button type="button" class="clear-btn" :disabled="!model.files.length" @click="clearFiles">Clear</button>
-        </div>
-        <ul v-if="model.files.length">
-          <li v-for="f in model.files" :key="f.name">{{ f.name }} ({{ Math.ceil(f.size / 1024) }} KB)</li>
-        </ul>
-        <p v-if="errors.files" class="field-error">{{ errors.files }}</p>
       </div>
 
       <!-- honeypot -->
@@ -105,14 +97,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import APPS from '../data/apps.json';
 
 const API = 'https://feedback.primaaestate.cloud';
 const TURNSTILE_SITEKEY = '0x4AAAAAAFXStiWWE__8dGzp';
-const LIMITS = { summaryMax: 120, descMin: 10, descMax: 5000, files: 3, fileBytes: 5 * 1024 * 1024, totalBytes: 10 * 1024 * 1024 };
-const EXT = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'heic', 'txt', 'log', 'zip'];
-const ACCEPT = EXT.map((e) => '.' + e).join(',');
+const LIMITS = { summaryMax: 120, descMin: 10, descMax: 5000 };
 // Old ?application= values used by in-app links -> slugs
 const LEGACY: Record<string, string> = {
   Aestate: 'aestate', NoMedia: 'nomedia', WebCopilot: 'web-copilot', HelloHero: 'hello-hero',
@@ -123,15 +113,18 @@ const HISTORY_KEY = 'FeedbackHistory';
 type Issue = { number: number; title: string; html_url: string; state: string; state_reason?: string | null; created_at: string; updated_at: string };
 
 const history = ref<Issue[]>([]);
-const model = reactive({ app: '', summary: '', description: '', website: '', files: [] as File[] });
+const model = reactive({ app: '', summary: '', description: '', website: '' });
 const errors = reactive<Record<string, string>>({});
 const error = ref('');
 const loading = ref(false);
 const success = ref<{ number: number; url: string; title: string } | null>(null);
-const fileInput = ref<HTMLInputElement>();
 const turnstileEl = ref<HTMLElement>();
 let widgetId: string | undefined;
 
+const mailto = computed(() => {
+  const name = APPS.find((a) => a.slug === model.app)?.name;
+  return `mailto:support@primaaestate.cloud?subject=${encodeURIComponent(`[Feedback]${name ? ' ' + name : ''}`)}`;
+});
 const fmt = (d: string) => (d ? new Date(d).toLocaleString() : '');
 const stateLabel = (i: Issue) => (i.state === 'closed' ? (i.state_reason === 'not_planned' ? 'closed (not planned)' : 'closed') : i.state || 'open');
 const saveHistory = () => localStorage.setItem(HISTORY_KEY, JSON.stringify(history.value));
@@ -213,18 +206,8 @@ onBeforeUnmount(() => {
 });
 
 // ---------- form ----------
-function onFiles(e: Event) {
-  model.files = Array.from((e.target as HTMLInputElement).files || []);
-  delete errors.files;
-}
-function clearFiles() {
-  if (fileInput.value) fileInput.value.value = '';
-  model.files = [];
-  delete errors.files;
-}
 function resetForm() {
   Object.assign(model, { app: '', summary: '', description: '', website: '' });
-  clearFiles();
 }
 
 function validate(): boolean {
@@ -232,14 +215,10 @@ function validate(): boolean {
   if (!model.app) errors.app = 'Please choose an application.';
   const d = model.description.trim().length;
   if (d < LIMITS.descMin) errors.description = `Please write at least ${LIMITS.descMin} characters.`;
-  if (model.files.length > LIMITS.files) errors.files = `At most ${LIMITS.files} files.`;
-  else if (model.files.some((f) => !EXT.includes((f.name.split('.').pop() || '').toLowerCase()))) errors.files = 'Only images, .txt, .log and .zip files are allowed.';
-  else if (model.files.some((f) => f.size > LIMITS.fileBytes)) errors.files = 'Each file must be 5 MB or smaller.';
-  else if (model.files.reduce((s, f) => s + f.size, 0) > LIMITS.totalBytes) errors.files = 'Attachments must be 10 MB or smaller in total.';
   if (!turnstileToken()) errors.captcha = 'Please complete the anti-spam check above.';
   const first = Object.keys(errors)[0];
   if (first) {
-    const id = { app: 'fb-app', description: 'fb-desc', files: 'fb-files' }[first];
+    const id = { app: 'fb-app', description: 'fb-desc', }[first];
     if (id) document.getElementById(id)?.focus();
     return false;
   }
@@ -251,10 +230,6 @@ const MESSAGES: Record<string, string> = {
   rate_limited: 'Too many submissions. Please wait a minute and try again.',
   app: 'Please choose an application.',
   description: `Description must be ${LIMITS.descMin}–${LIMITS.descMax} characters.`,
-  file_type: 'One of the attachments is not an allowed file type.',
-  file_too_large: 'Each file must be 5 MB or smaller.',
-  files_too_large: 'Attachments must be 10 MB or smaller in total.',
-  too_many_files: `At most ${LIMITS.files} files.`,
   upstream: 'Our feedback service is temporarily unavailable. Please try again later, or email support@primaaestate.cloud.',
 };
 
@@ -267,7 +242,6 @@ async function submit() {
   fd.append('description', model.description.trim());
   fd.append('website', model.website);
   fd.append('cf-turnstile-response', turnstileToken());
-  model.files.forEach((f) => fd.append('files', f, f.name));
   loading.value = true;
   try {
     const r = await fetch(`${API}/feedback`, { method: 'POST', body: fd });
@@ -304,6 +278,9 @@ function another() {
 h1 { margin-bottom: 20px; }
 .history h2 { font-size: 16px; margin: 0 0 8px; border: 0; padding: 0; }
 .notice { padding: 8px 16px; text-align: center; }
+.email-us { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; justify-content: center; margin: 0 0 12px; padding: 10px 16px; border: 1px solid var(--vp-c-divider); border-radius: 8px; }
+.email-us a { color: var(--vp-c-brand-1); text-decoration: underline; }
+.email-us small { flex-basis: 100%; text-align: center; }
 .form-item + .form-item { margin-top: 10px; }
 label { display: block; padding: 5px 10px; text-align: left; }
 label.row { display: flex; gap: 8px; }
