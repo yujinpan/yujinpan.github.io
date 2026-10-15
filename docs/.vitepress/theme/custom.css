@@ -1,0 +1,13 @@
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px}
+.app-card{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid var(--vp-c-divider);border-radius:14px;text-decoration:none!important;color:inherit!important}
+.app-card:hover{border-color:var(--vp-c-brand-1)}
+.app-card img{width:64px;height:64px;border-radius:14px;flex:none}
+.app-card strong{display:block;font-size:16px}
+.app-card span{font-size:13px;color:var(--vp-c-text-2);line-height:1.4}
+.app-hero{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:8px 0 24px}
+.app-hero h1{margin:0!important}
+.app-icon{width:120px;height:120px;border-radius:26px}
+.app-pitch{font-size:18px;color:var(--vp-c-text-2)}
+.app-store-btn{display:inline-block;margin-top:8px;padding:10px 20px;border-radius:10px;background:#000;color:#fff!important;text-decoration:none!important;font-weight:600}
+.app-shots{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px}
+.app-shots img{height:420px;border-radius:14px;border:1px solid var(--vp-c-divider)}
