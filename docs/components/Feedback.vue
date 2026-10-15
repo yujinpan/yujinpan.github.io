@@ -2,42 +2,17 @@
   <div class="form">
     <h1 style="text-align: center">Product Feedback</h1>
 
-    <section v-if="history.length" class="history" aria-labelledby="fb-history-title">
-      <h2 id="fb-history-title">Your feedback history</h2>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">State</th>
-            <th scope="col">Created</th>
-            <th scope="col">Updated</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in history" :key="item.number">
-            <td><a :href="item.html_url" target="_blank" rel="noopener">{{ item.title }}</a></td>
-            <td>{{ stateLabel(item) }}</td>
-            <td>{{ fmt(item.created_at) }}</td>
-            <td>{{ fmt(item.updated_at) }}</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <section class="intro tip custom-block" aria-label="About feedback">
+      <p>Please describe the issue in detail so we can improve the product. Thank you!</p>
+      <p class="text-secondary">Feedback is posted as a <strong>public</strong> issue on
+        <a href="https://github.com/PrimaAestate/feedback" target="_blank" rel="noopener">GitHub</a>.
+        Please don't include personal information. We'll follow up in the issue — bookmark it or check this page for status.</p>
+      <p class="text-secondary"><strong>Prefer email?</strong> Write to
+        <a :href="mailto">support@primaaestate.cloud</a>. Email is private — only we see it.</p>
     </section>
 
-    <aside class="email-us">
-      <strong>Prefer email?</strong>
-      <a :href="mailto">Email us at support@primaaestate.cloud</a>
-      <small class="text-secondary">Email is private. Only we see it, unlike the public issues below.</small>
-    </aside>
-
     <form v-if="!success" novalidate @submit.prevent="submit" @reset.prevent="resetForm">
-      <p class="tip custom-block notice">
-        Please describe the issue in detail so we can improve the product. Thank you!<br />
-        <small>Feedback is posted as a <strong>public</strong> issue on
-          <a href="https://github.com/PrimaAestate/feedback" target="_blank" rel="noopener">GitHub</a>.
-          Please don't include personal information. We'll follow up in the issue — bookmark it or check this page for status.</small>
-      </p>
-
       <div class="form-item">
         <label for="fb-app">Application <span aria-hidden="true">*</span></label>
         <select id="fb-app" v-model="model.app" name="app" required
@@ -93,6 +68,28 @@
       <p><a :href="success.url" target="_blank" rel="noopener">#{{ success.number }} {{ success.title }}</a></p>
       <p><button type="button" class="clear-btn" @click="another">Submit another</button></p>
     </div>
+
+    <section v-if="history.length" class="history" aria-labelledby="fb-history-title">
+      <h2 id="fb-history-title">Your feedback history</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">State</th>
+            <th scope="col">Created</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in history" :key="item.number">
+            <td><a :href="item.html_url" target="_blank" rel="noopener">{{ item.title }}</a></td>
+            <td>{{ stateLabel(item) }}</td>
+            <td>{{ fmt(item.created_at) }}</td>
+            <td>{{ fmt(item.updated_at) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </div>
 </template>
 
@@ -275,15 +272,18 @@ function another() {
 
 <style scoped>
 .form { font-size: 16px; }
-h1 { margin-bottom: 20px; }
+h1 { margin-bottom: 24px; }
 .history h2 { font-size: 16px; margin: 0 0 8px; border: 0; padding: 0; }
-.notice { padding: 8px 16px; text-align: center; }
-.email-us { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; justify-content: center; margin: 0 0 12px; padding: 10px 16px; border: 1px solid var(--vp-c-divider); border-radius: 8px; }
-.email-us a { color: var(--vp-c-brand-1); text-decoration: underline; }
-.email-us small { flex-basis: 100%; text-align: center; }
-.form-item + .form-item { margin-top: 10px; }
-label { display: block; padding: 5px 10px; text-align: left; }
-label.row { display: flex; gap: 8px; }
+.intro { margin: 0 0 20px; padding: 12px 16px; }
+.intro p { margin: 0; line-height: 1.6; }
+.intro p + p { margin-top: 6px; font-size: 14px; }
+.intro a { color: var(--vp-c-brand-1); text-decoration: underline; }
+.history { margin-top: 32px; }
+.history table { width: 100%; display: table; }
+.form-item + .form-item { margin-top: 16px; }
+label { display: block; padding: 0 0 6px; text-align: left; font-weight: 500; }
+label.row { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+label small { font-weight: 400; font-size: 13px; }
 label.row small { margin-left: auto; text-align: right; }
 input, textarea, select {
   font-size: inherit; width: 100%; border: 1px solid var(--vp-c-divider); padding: 5px 10px;
@@ -292,11 +292,12 @@ input, textarea, select {
 input:hover, textarea:hover, select:hover { border-color: color-mix(in srgb, var(--vp-c-brand-1) 50%, transparent); }
 input:focus-visible, textarea:focus-visible, select:focus-visible { border-color: var(--vp-c-brand-1); outline: 2px solid var(--vp-c-brand-soft); }
 [aria-invalid='true'] { border-color: var(--vp-c-danger-1); }
-.field-error { color: var(--vp-c-danger-1); font-size: 14px; margin: 4px 10px 0; }
+.field-error { color: var(--vp-c-danger-1); font-size: 14px; margin: 4px 0 0; }
 button { font-size: inherit; }
 select.is-placeholder { color: var(--vp-c-text-3); }
 .hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
-.turnstile { min-height: 65px; }
+.turnstile { min-height: 65px; display: flex; justify-content: center; }
+.submit { margin-top: 4px; }
 .submit { width: 100%; background: var(--vp-c-green-3); padding: 10px; border-radius: 4px; color: white; transition: background-color 0.25s; }
 .submit:hover { background: var(--vp-c-green-2); }
 .submit:active { background: var(--vp-c-green-1); }
@@ -305,4 +306,8 @@ select.is-placeholder { color: var(--vp-c-text-3); }
 .clear-btn:disabled { opacity: 0.5; }
 .text-secondary { color: var(--vp-c-text-2); }
 .warning { text-align: left; }
+@media (max-width: 640px) {
+  label.row small { margin-left: 0; text-align: left; flex-basis: 100%; }
+  .history table { display: block; overflow-x: auto; font-size: 13px; }
+}
 </style>
