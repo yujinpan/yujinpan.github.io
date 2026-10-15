@@ -46,19 +46,17 @@
       <input class="hp" type="text" name="website" v-model="model.website" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="form-item">
-        <div ref="turnstileEl" class="turnstile"></div>
-        <p v-if="errors.captcha" class="field-error">{{ errors.captcha }}</p>
-      </div>
-
-      <div class="form-item">
         <div role="alert" aria-live="assertive">
           <div v-if="error" class="warning custom-block">
             <p class="custom-block-title">Could not submit</p>
             <p>{{ error }}</p>
           </div>
         </div>
-        <button class="submit" type="submit" :disabled="loading" :aria-busy="loading">
-          {{ loading ? 'Submitting…' : 'Submit Feedback' }}
+        <!-- Turnstile (interaction-only): stays hidden unless a challenge is needed, then appears right above Submit -->
+        <div ref="turnstileEl" class="turnstile"></div>
+        <p v-if="errors.captcha" class="field-error" role="alert">{{ errors.captcha }}</p>
+        <button class="submit" type="submit" :disabled="loading || verifying" :aria-busy="loading || verifying">
+          {{ loading ? 'Submitting…' : verifying ? 'Verifying…' : 'Submit Feedback' }}
         </button>
       </div>
     </form>
@@ -117,6 +115,9 @@ const loading = ref(false);
 const success = ref<{ number: number; url: string; title: string } | null>(null);
 const turnstileEl = ref<HTMLElement>();
 let widgetId: string | undefined;
+let token = '';
+const verifying = ref(false); // submit clicked, waiting for the Turnstile token
+let verifyTimer: number | undefined;
 
 const mailto = computed(() => {
   const name = APPS.find((a) => a.slug === model.app)?.name;
@@ -144,12 +145,38 @@ async function renderTurnstile() {
   if (!turnstileEl.value) return;
   try {
     const t = await loadTurnstile();
-    widgetId = t.render(turnstileEl.value, { sitekey: TURNSTILE_SITEKEY, action: 'feedback' });
+    token = '';
+    widgetId = t.render(turnstileEl.value, {
+      sitekey: TURNSTILE_SITEKEY,
+      action: 'feedback',
+      appearance: 'interaction-only',
+      callback: onToken,
+      'expired-callback': () => { token = ''; resetTurnstile(); },
+      'timeout-callback': () => onTurnstileFail('The anti-spam check timed out. Please try again.'),
+      'error-callback': () => { onTurnstileFail('The anti-spam check failed. Please try again, or email us instead.'); return true; },
+    });
   } catch {
     errors.captcha = 'Could not load the anti-spam check. Please disable content blockers for this page and reload.';
   }
 }
-const turnstileToken = () => ((window as any).turnstile && widgetId !== undefined ? (window as any).turnstile.getResponse(widgetId) : '');
+function resetTurnstile() {
+  token = '';
+  if (widgetId !== undefined) (window as any).turnstile?.reset(widgetId);
+}
+function stopVerifying() {
+  verifying.value = false;
+  if (verifyTimer !== undefined) { clearTimeout(verifyTimer); verifyTimer = undefined; }
+}
+function onToken(t: string) {
+  token = t;
+  delete errors.captcha;
+  if (verifying.value) { stopVerifying(); submit(); }
+}
+function onTurnstileFail(msg: string) {
+  stopVerifying();
+  errors.captcha = msg;
+  resetTurnstile();
+}
 
 // ---------- status polling (only while page visible, with backoff) ----------
 let timer: number | undefined;
@@ -199,6 +226,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('visibilitychange', onVisibility);
   if (timer !== undefined) clearTimeout(timer);
+  stopVerifying();
   if (widgetId !== undefined) (window as any).turnstile?.remove(widgetId);
 });
 
@@ -212,7 +240,6 @@ function validate(): boolean {
   if (!model.app) errors.app = 'Please choose an application.';
   const d = model.description.trim().length;
   if (d < LIMITS.descMin) errors.description = `Please write at least ${LIMITS.descMin} characters.`;
-  if (!turnstileToken()) errors.captcha = 'Please complete the anti-spam check above.';
   const first = Object.keys(errors)[0];
   if (first) {
     const id = { app: 'fb-app', description: 'fb-desc', }[first];
@@ -232,13 +259,20 @@ const MESSAGES: Record<string, string> = {
 
 async function submit() {
   error.value = '';
-  if (loading.value || !validate()) return;
+  if (loading.value || verifying.value || !validate()) return;
+  if (!token) {
+    // token not ready yet: show "Verifying…" and submit automatically once it arrives
+    verifying.value = true;
+    verifyTimer = window.setTimeout(() => onTurnstileFail('The anti-spam check is taking too long. Please try again.'), 30_000);
+    return;
+  }
   const fd = new FormData();
   fd.append('app', model.app);
   fd.append('summary', model.summary.trim());
   fd.append('description', model.description.trim());
   fd.append('website', model.website);
-  fd.append('cf-turnstile-response', turnstileToken());
+  fd.append('cf-turnstile-response', token);
+  token = ''; // tokens are single-use
   loading.value = true;
   try {
     const r = await fetch(`${API}/feedback`, { method: 'POST', body: fd });
@@ -257,7 +291,7 @@ async function submit() {
     resetForm();
   } catch (e: any) {
     error.value = e?.message || 'Network error. Please check your connection and try again.';
-    (window as any).turnstile?.reset(widgetId);
+    resetTurnstile();
   } finally {
     loading.value = false;
   }
@@ -265,6 +299,7 @@ async function submit() {
 
 function another() {
   success.value = null;
+  stopVerifying();
   widgetId = undefined;
   renderTurnstile();
 }
@@ -296,7 +331,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { border-color
 button { font-size: inherit; }
 select.is-placeholder { color: var(--vp-c-text-3); }
 .hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
-.turnstile { min-height: 65px; display: flex; justify-content: center; }
+.turnstile { display: flex; justify-content: flex-start; }
 .submit { margin-top: 4px; }
 .submit { width: 100%; background: var(--vp-c-green-3); padding: 10px; border-radius: 4px; color: white; transition: background-color 0.25s; }
 .submit:hover { background: var(--vp-c-green-2); }
