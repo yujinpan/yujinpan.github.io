@@ -29,7 +29,7 @@
         Please describe the issue in detail so we can improve the product. Thank you!<br />
         <small>Feedback is posted as a <strong>public</strong> issue on
           <a href="https://github.com/PrimaAestate/feedback" target="_blank" rel="noopener">GitHub</a>.
-          Your email is never published; it is only sent privately to us so we can reply.</small>
+          Please don't include personal information. We'll follow up in the issue — bookmark it or check this page for status.</small>
       </p>
 
       <div class="form-item">
@@ -73,13 +73,6 @@
           <li v-for="f in model.files" :key="f.name">{{ f.name }} ({{ Math.ceil(f.size / 1024) }} KB)</li>
         </ul>
         <p v-if="errors.files" class="field-error">{{ errors.files }}</p>
-      </div>
-
-      <div class="form-item">
-        <label for="fb-email" class="row">Email <small id="fb-email-hint" class="text-secondary">Optional, private: only used to reply to you</small></label>
-        <input id="fb-email" v-model="model.email" name="email" type="email" autocomplete="email"
-               placeholder="you@example.com" aria-describedby="fb-email-hint" :aria-invalid="!!errors.email" />
-        <p v-if="errors.email" class="field-error">{{ errors.email }}</p>
       </div>
 
       <!-- honeypot -->
@@ -130,7 +123,7 @@ const HISTORY_KEY = 'FeedbackHistory';
 type Issue = { number: number; title: string; html_url: string; state: string; state_reason?: string | null; created_at: string; updated_at: string };
 
 const history = ref<Issue[]>([]);
-const model = reactive({ app: '', summary: '', description: '', email: '', website: '', files: [] as File[] });
+const model = reactive({ app: '', summary: '', description: '', website: '', files: [] as File[] });
 const errors = reactive<Record<string, string>>({});
 const error = ref('');
 const loading = ref(false);
@@ -230,7 +223,7 @@ function clearFiles() {
   delete errors.files;
 }
 function resetForm() {
-  Object.assign(model, { app: '', summary: '', description: '', email: '', website: '' });
+  Object.assign(model, { app: '', summary: '', description: '', website: '' });
   clearFiles();
 }
 
@@ -239,7 +232,6 @@ function validate(): boolean {
   if (!model.app) errors.app = 'Please choose an application.';
   const d = model.description.trim().length;
   if (d < LIMITS.descMin) errors.description = `Please write at least ${LIMITS.descMin} characters.`;
-  if (model.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(model.email.trim())) errors.email = 'Please enter a valid email address, or leave it empty.';
   if (model.files.length > LIMITS.files) errors.files = `At most ${LIMITS.files} files.`;
   else if (model.files.some((f) => !EXT.includes((f.name.split('.').pop() || '').toLowerCase()))) errors.files = 'Only images, .txt, .log and .zip files are allowed.';
   else if (model.files.some((f) => f.size > LIMITS.fileBytes)) errors.files = 'Each file must be 5 MB or smaller.';
@@ -247,7 +239,7 @@ function validate(): boolean {
   if (!turnstileToken()) errors.captcha = 'Please complete the anti-spam check above.';
   const first = Object.keys(errors)[0];
   if (first) {
-    const id = { app: 'fb-app', description: 'fb-desc', email: 'fb-email', files: 'fb-files' }[first];
+    const id = { app: 'fb-app', description: 'fb-desc', files: 'fb-files' }[first];
     if (id) document.getElementById(id)?.focus();
     return false;
   }
@@ -259,7 +251,6 @@ const MESSAGES: Record<string, string> = {
   rate_limited: 'Too many submissions. Please wait a minute and try again.',
   app: 'Please choose an application.',
   description: `Description must be ${LIMITS.descMin}–${LIMITS.descMax} characters.`,
-  email: 'Please enter a valid email address.',
   file_type: 'One of the attachments is not an allowed file type.',
   file_too_large: 'Each file must be 5 MB or smaller.',
   files_too_large: 'Attachments must be 10 MB or smaller in total.',
@@ -274,7 +265,6 @@ async function submit() {
   fd.append('app', model.app);
   fd.append('summary', model.summary.trim());
   fd.append('description', model.description.trim());
-  if (model.email.trim()) fd.append('email', model.email.trim());
   fd.append('website', model.website);
   fd.append('cf-turnstile-response', turnstileToken());
   model.files.forEach((f) => fd.append('files', f, f.name));
