@@ -1,0 +1,6 @@
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px}
+.app-card{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid var(--vp-c-divider);border-radius:14px;text-decoration:none!important;color:inherit!important}
+.app-card:hover{border-color:var(--vp-c-brand-1)}
+.app-card img{width:64px;height:64px;border-radius:14px;flex:none}
+.app-card strong{display:block;font-size:16px}
+.app-card span{font-size:13px;color:var(--vp-c-text-2);line-height:1.4}

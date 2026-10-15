@@ -18,9 +18,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Apps', link: 'https://www.primaaestate.cloud' },
-      { text: 'Contact Us', link: 'mailto:yujinpan21@gmail.com' },
-      { text: 'Feedback', link: '/Feedback' },
-      { text: 'Privacy Policy', link: '/PrivacyPolicy' },
+      { text: 'Contact', link: 'mailto:yujinpan21@gmail.com' },
     ],
     socialLinks: [
       {
@@ -29,7 +27,7 @@ export default defineConfig({
       },
     ],
     footer: {
-      // message: 'Released under the MIT License.',
+      message: '<a href="/Feedback">Feedback</a> · <a href="/PrivacyPolicy">Privacy Policy</a>',
       copyright: `Copyright © 2016-${new Date().getFullYear()} yujinpan`,
     },
     lastUpdatedText: 'Updated Date',
