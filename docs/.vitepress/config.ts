@@ -27,7 +27,7 @@ export default defineConfig({
       },
     ],
     footer: {
-      message: '<a href="/Feedback">Feedback</a> · <a href="/PrivacyPolicy">Privacy Policy</a>',
+      message: '<a href="https://www.primaaestate.cloud/Feedback">Feedback</a> · <a href="/PrivacyPolicy">Privacy Policy</a>',
       copyright: `Copyright © 2016-${new Date().getFullYear()} yujinpan`,
     },
     lastUpdatedText: 'Updated Date',
