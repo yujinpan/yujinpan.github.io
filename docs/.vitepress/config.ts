@@ -4,11 +4,20 @@ export default defineConfig({
   appearance: true,
   lang: 'en-US',
   title: 'yujinpan',
-  description: `yujinpan's github pages.`,
+  description: 'yujinpan: English lessons, web tools and open-source Vue components, JS libraries, Node utils and Tampermonkey scripts.',
+  head: [
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'yujinpan' }],
+    ['meta', { property: 'og:title', content: 'yujinpan' }],
+    ['meta', { property: 'og:description', content: 'English lessons, web tools and open-source Vue components, JS libraries, Node utils and Tampermonkey scripts.' }],
+    ['meta', { property: 'og:url', content: 'https://yujinpan.github.io/' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+  ],
   themeConfig: {
     logo: '/logo.svg',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Apps', link: 'https://www.primaaestate.cloud' },
       { text: 'Contact Us', link: 'mailto:yujinpan21@gmail.com' },
       { text: 'Feedback', link: '/Feedback' },
       { text: 'Privacy Policy', link: '/PrivacyPolicy' },

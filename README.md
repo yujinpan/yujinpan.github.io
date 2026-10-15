@@ -1,24 +1,26 @@
 # Welcome to yujinpan.github.io
 
-Here are some projects to help us live or work.
+Here are some projects to help us live or work: English lessons, web tools and open-source libraries.
 
-## Applications
+## Apps
 
-| Name                                                                                          | Description                                                                                        |
-| --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [Aestate](https://apps.apple.com/us/app/aestate/id6749141594?mt=12)                           | A lightweight proxy tool designed to minimize battery drain.                                       |
-| [Hello Hero](https://apps.apple.com/us/app/hello-heros/id6739343026)                          | Chat with your heroes.                                                                             |
-| [Console Mini](https://apps.apple.com/cn/app/console-mini/id6744146152?l=en-GB)               | A mini console for web development tools in Safari.                                                |
-| [Web Copilot](https://apps.apple.com/us/app/web-copilot/id6755813748)                         | AI Browser Agent.                                                                                  |
-| [URL Editor for Safari](https://apps.apple.com/us/app/url-editor-portable/id6740315748)       | Easily view and edit various contents of the URL.                                                  |
-| [JSON Tree for Safari](https://apps.apple.com/us/app/json-tree-for-safari/id6702017445?mt=12) | Display JSON Object tree for Safari.                                                               |
-| [NoMedia for Safari](https://apps.apple.com/us/app/nomedia/id6683300799)                      | Block all images, medias for Safari.                                                               |
-| [Learn English From Xinrong](https://yujinpan.github.io/learn-english-from-xinrong)           | Helps us review Xinrong video courses.                                                             |
-| [Geo Format Convert](https://yujinpan.github.io/format)                                       | -                                                                                                  |
-| [Download GeoJSON areas](https://yujinpan.github.io/format/#/geo/areas)                       | Supported multiple formats.                                                                        |
-| [Subscribes Transform](https://github.com/yujinpan/scripts)                                   | Supported JustMySocks to QuantumultX.                                                              |
-| [Cashier Desk](https://yujinpan.github.io/cashier-desk)                                       | Fully static localized Cashier. [AppStore](https://apps.apple.com/us/app/cashierdesk/id6478970861) |
-| [ChatGPT Web](https://yujinpan.github.io/chatgpt-web)                                         | ChatGPT web use Gemini. Built-in role play.                                                        |
+My App Store apps (Aestate, NoMedia, Web Copilot, Console Mini, JSON Tree and more) now live at **[Prima Aestate](https://www.primaaestate.cloud)**.
+
+## English Lessons
+
+| Name | Description |
+| --- | --- |
+| [Learn English From Xinrong](https://yujinpan.github.io/learn-english-from-xinrong) | Helps us review Xinrong video courses. |
+
+## Web Tools
+
+| Name | Description |
+| --- | --- |
+| [Geo Format Convert](https://yujinpan.github.io/format) | - |
+| [Download GeoJSON areas](https://yujinpan.github.io/format/#/geo/areas) | Supported multiple formats. |
+| [Subscribes Transform](https://github.com/yujinpan/scripts) | Supported JustMySocks to QuantumultX. |
+| [Cashier Desk](https://yujinpan.github.io/cashier-desk) | Fully static localized Cashier. |
+| [ChatGPT Web](https://yujinpan.github.io/chatgpt-web) | ChatGPT web use Gemini. Built-in role play. |
 
 ## Vue Components
 
