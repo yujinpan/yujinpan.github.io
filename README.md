@@ -8,35 +8,35 @@ My App Store apps, published by [Prima Aestate](https://www.primaaestate.cloud).
 
 <div class="app-grid">
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/aestate">
-    <img src="https://yujinpan.github.io/img/apps/aestate/icon.png" alt="Aestate" />
+    <img src="https://yujinpan.github.io/img/apps/aestate/icon.png" alt="Aestate" width="64" height="64" />
     <div><strong>Aestate</strong><span>A lightweight, stable and easy-to-use network tool for Mac, iPhone and iPad, designed to minimize battery drain.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/nomedia">
-    <img src="https://yujinpan.github.io/img/apps/nomedia/icon.png" alt="NoMedia" />
+    <img src="https://yujinpan.github.io/img/apps/nomedia/icon.png" alt="NoMedia" width="64" height="64" />
     <div><strong>NoMedia</strong><span>Remove images and media from Safari pages for cleaner, faster, data-saving reading.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/web-copilot">
-    <img src="https://yujinpan.github.io/img/apps/web-copilot/icon.png" alt="Web Copilot" />
+    <img src="https://yujinpan.github.io/img/apps/web-copilot/icon.png" alt="Web Copilot" width="64" height="64" />
     <div><strong>Web Copilot</strong><span>Let AI take over the browser: open, analyze and manipulate web pages through dialogue.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/hello-hero">
-    <img src="https://yujinpan.github.io/img/apps/hello-hero/icon.png" alt="Hello, Hero" />
+    <img src="https://yujinpan.github.io/img/apps/hello-hero/icon.png" alt="Hello, Hero" width="64" height="64" />
     <div><strong>Hello, Hero</strong><span>Chat across time with historical figures, legendary heroes and opera stars.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/console-mini">
-    <img src="https://yujinpan.github.io/img/apps/console-mini/icon.png" alt="Console Mini" />
+    <img src="https://yujinpan.github.io/img/apps/console-mini/icon.png" alt="Console Mini" width="64" height="64" />
     <div><strong>Console Mini</strong><span>A mini web development tool for macOS and iOS Safari.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/url-editor-portable">
-    <img src="https://yujinpan.github.io/img/apps/url-editor-portable/icon.png" alt="URL Editor Portable" />
+    <img src="https://yujinpan.github.io/img/apps/url-editor-portable/icon.png" alt="URL Editor Portable" width="64" height="64" />
     <div><strong>URL Editor Portable</strong><span>Easily view and edit every part of a URL: protocol, host, port, path and parameters.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/json-tree">
-    <img src="https://yujinpan.github.io/img/apps/json-tree/icon.png" alt="JSON Tree" />
+    <img src="https://yujinpan.github.io/img/apps/json-tree/icon.png" alt="JSON Tree" width="64" height="64" />
     <div><strong>JSON Tree</strong><span>A lightweight, blazing-fast JSON tree previewer with no external dependencies.</span></div>
   </a>
   <a class="app-card" target="_blank" rel="noopener" href="https://www.primaaestate.cloud/apps/cashier-desk">
-    <img src="https://yujinpan.github.io/img/apps/cashier-desk/icon.png" alt="Cashier Desk" />
+    <img src="https://yujinpan.github.io/img/apps/cashier-desk/icon.png" alt="Cashier Desk" width="64" height="64" />
     <div><strong>Cashier Desk</strong><span>A fully offline order calculator with product, order and statistics management.</span></div>
   </a>
 </div>
